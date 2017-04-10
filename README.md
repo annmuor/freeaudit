@@ -1,7 +1,7 @@
 # freeaudit
 
 This is a toolchain to freely audit your software for vulnerabilities.
-With a great help of [vulners team](http://vulners.com)
+With a great help of [vulners team](http://vulners.com) it finds vulnerabilities on package-based Linux distros to allow you get actual security risks of your environment.
 ### How it works
 ![FreeAudit scheme](https://habrastorage.org/files/200/c43/403/200c43403a2541a4a82c4857e1b7218b.png)
 ### Requirements
