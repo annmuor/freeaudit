@@ -3,10 +3,13 @@
 use strict;
 use warnings;
 use JSON;
+use Sys::Hostname;
+
 # config
 our %grabs = (
   'centos|oraclelinux|redhat|fedora' => q(rpm -aq),
   'debian|ubuntu' => q(dpkg-query -W -f='${Package} ${Version} ${Architecture}\n'),
+  'arch|manjaro' => q(pacman -Q),
   'osx' => q(pkgutil --pkgs)
 );
 
@@ -14,12 +17,13 @@ our %unames = (
   'linux' => q(lsb_release -a),
   'darwin' => q(echo "Distributor ID: OSX")
 );
+
 # global vars
-our $hostname = `hostname -f`;
+our $hostname = hostname;
 our ($vercmd, $grabcmd, $operatingsystem, $version);
-# do uname
-my $uname = `uname`;
-chomp $uname;
+
+# detect OS by a perl way
+my $uname = $^O;
 
 foreach (keys %unames) {
   $vercmd = $unames{$_} if $uname =~ /$_/i;
